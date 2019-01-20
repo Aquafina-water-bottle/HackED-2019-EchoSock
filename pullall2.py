@@ -18,8 +18,8 @@ devices = set()
 # esp_id: number
 boards = {
     "A": "?",
-    "B": "?",
-    "C": "?"
+    "C": "?",
+    "H": "?"
     }
 
 # (esp_id, cycle_id) : last time they were used
@@ -61,10 +61,13 @@ def decode_message2(message: str):
     """
     {esp_id}{#}
     """
-    esp_id = message[0]
-    number = int(message[1:])
-    boards[esp_id] = number
-    print("%3s %3s %3s" % tuple(boards[c] for c in 'ACH'))
+    try:
+        esp_id = message[0]
+        number = int(message[1:])
+        boards[esp_id] = number
+        print(datetime.datetime.now(), "%3s %3s %3s" % tuple(boards[c] for c in 'CHA'))
+    except Exception:
+        print("idk", repr(message))
 
 def check_ids():
     for key in cycle_ids:
@@ -141,4 +144,5 @@ if __name__ == "__main__":
     #test2()
     #main()
     main2()
+
 
