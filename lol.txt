@@ -1,0 +1,3 @@
+We were joking about making a smart sock that gives you a foot massage at the command of Amazon Echo but we ended up STOCKING people instead. ;)
+We learned how to publish and pull data to and from google-iot-core service on the Google Cloud Platform.
+
