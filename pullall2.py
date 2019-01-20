@@ -13,6 +13,10 @@ project_id = "steady-mason-229223"
 subscription_name = "iot-sample-sub"
 
 
+with open("site/template.html") as file:
+    template = file.read()
+
+
 
 # set of Device
 devices = set()
@@ -23,6 +27,26 @@ boards = {
     "H": "?",
     "A": "?",
     }
+
+
+def update_template():
+    with open("site/output.html", 'w') as file:
+        try:
+            formatted_strs = []
+            for key in boards:
+                if boards[key] == "?":
+                    formatted_strs.append("?")
+                else:
+                    formatted_strs.append(str(boards[key].number))
+
+            formatted_strs = tuple(formatted_strs)
+            file.write(template % formatted_strs)
+            logging.info("update template success")
+        except Exception as e:
+            logging.info("updating template failed :c")
+            #logging.exception(e)
+
+
 
 class Board(NamedTuple):
     # esp board ID: uppercase A-Z
@@ -36,6 +60,7 @@ def reset_messages():
         if (boards[key] != "?") and (time.time() - boards[key].recorded_time > 10):
             logging.info("reset " + key)
             boards[key] = "?"
+            update_template()
 
 def decode_message2(message: str):
     """
@@ -53,6 +78,8 @@ def decode_message2(message: str):
                 formatted_strs.append(" ? ")
             else:
                 formatted_strs.append("%3s" % boards[key].number)
+
+        update_template()
 
         print(datetime.datetime.now(), ":",  " ".join(formatted_strs))
         #print(datetime.datetime.now(), " ".join(("%3s" % boards[c].number) for c in 'CHA'))
