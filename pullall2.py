@@ -33,7 +33,7 @@ class Board(NamedTuple):
 
 def reset_messages():
     for key in boards:
-        if time.time() - boards[key].recorded_time > 10:
+        if (boards[key] != "?") and (time.time() - boards[key].recorded_time > 10):
             logging.info("reset " + key)
             boards[key] = "?"
 
