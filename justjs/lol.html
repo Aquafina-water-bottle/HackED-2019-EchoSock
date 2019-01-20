@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <canvas id="myCanvas" width="800" height="500" style="border:1px solid #000000;"></canvas>
+
+
+
+
+  </head>
+  <body>
+
+    <script>
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+
+      // Create gradient
+      var grd = ctx.createLinearGradient(0, 0, 200, 0);
+      grd.addColorStop(0, "red");
+      grd.addColorStop(1, "white");
+
+      // Fill with gradient
+      ctx.fillStyle = grd;
+      ctx.fillRect(10, 10, 5, 5);
+      ctx.fillRect(100, 100, 5, 5);
+
+      // x, y, r, start_angle, end_angle
+      ctx.beginPath();
+      ctx.arc(95, 50, 2, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(10, 10, 2, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(100, 50, 2, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(106, 100, 2, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(115, 90, 2, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(100, 85, 2, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(95, 50, 40 , 0, 2 * Math.PI);
+      ctx.stroke();
+
+
+
+    </script>
+
+
+    <p>canvas on top</p>
+  </body>
+</html>
