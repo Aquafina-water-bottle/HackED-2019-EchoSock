@@ -95,7 +95,7 @@ def decode_message2(message: str):
 
 
 def parse_args():
-    # Usage: main.py fileName [output_path] [-d, --debug]
+    # Usage: pullall2.py [-d, --debug]
     parser = argparse.ArgumentParser()
 
     # debug
